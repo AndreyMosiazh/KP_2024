@@ -1,0 +1,52 @@
+﻿<Window x:Class="PharmacyApp.NewRecordWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Додати новий запис" Height="300" Width="400">
+    <Grid Margin="10">
+        <StackPanel>
+            <Grid>
+                <TextBox x:Name="IndexTextBox" Margin="5"/>
+                <TextBlock Text="Індекс" IsHitTestVisible="False" 
+                           Foreground="Gray" Margin="10,0,0,0" 
+                           VerticalAlignment="Center" 
+                           Visibility="{Binding Text, ElementName=IndexTextBox, Converter={StaticResource EmptyStringToVisibilityConverter}}"/>
+            </Grid>
+            <Grid>
+                <TextBox x:Name="NameTextBox" Margin="5"/>
+                <TextBlock Text="Назва" IsHitTestVisible="False" 
+                           Foreground="Gray" Margin="10,0,0,0" 
+                           VerticalAlignment="Center" 
+                           Visibility="{Binding Text, ElementName=NameTextBox, Converter={StaticResource EmptyStringToVisibilityConverter}}"/>
+            </Grid>
+            <Grid>
+                <TextBox x:Name="PriceTextBox" Margin="5" TextChanged="PriceTextBox_TextChanged"/>
+                <TextBlock Text="Ціна" IsHitTestVisible="False" 
+                           Foreground="Gray" Margin="10,0,0,0" 
+                           VerticalAlignment="Center" 
+                           Visibility="{Binding Text, ElementName=PriceTextBox, Converter={StaticResource EmptyStringToVisibilityConverter}}"/>
+            </Grid>
+            <Grid>
+                <TextBox x:Name="QuantityTextBox" Margin="5" TextChanged="QuantityTextBox_TextChanged"/>
+                <TextBlock Text="Кількість" IsHitTestVisible="False" 
+                           Foreground="Gray" Margin="10,0,0,0" 
+                           VerticalAlignment="Center" 
+                           Visibility="{Binding Text, ElementName=QuantityTextBox, Converter={StaticResource EmptyStringToVisibilityConverter}}"/>
+            </Grid>
+            <Grid>
+                <TextBox x:Name="UnitTextBox" Margin="5"/>
+                <TextBlock Text="Од. вим." IsHitTestVisible="False" 
+                           Foreground="Gray" Margin="10,0,0,0" 
+                           VerticalAlignment="Center" 
+                           Visibility="{Binding Text, ElementName=UnitTextBox, Converter={StaticResource EmptyStringToVisibilityConverter}}"/>
+            </Grid>
+            <Grid>
+                <TextBox x:Name="TotalTextBox" Margin="5" IsReadOnly="True"/>
+                <TextBlock Text="Заг. сума" IsHitTestVisible="False" 
+                           Foreground="Gray" Margin="10,0,0,0" 
+                           VerticalAlignment="Center" 
+                           Visibility="{Binding Text, ElementName=TotalTextBox, Converter={StaticResource EmptyStringToVisibilityConverter}}"/>
+            </Grid>
+            <Button Content="Зберегти" Margin="5" Click="AddOrEditButton_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
