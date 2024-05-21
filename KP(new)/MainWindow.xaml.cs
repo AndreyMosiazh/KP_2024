@@ -43,7 +43,7 @@ namespace PharmacyApp
 
             if (_filteredMedicines.Count == 0)
             {
-                MessageBox.Show("Нет совпадений для поиска.");
+                MessageBox.Show("Немає збігів у тексті для пошуку.");
             }
 
             RecordsDataGrid.ItemsSource = _filteredMedicines;
@@ -70,7 +70,7 @@ namespace PharmacyApp
                 OpenFileDialog openFileDialog = new OpenFileDialog
                 {
                     Filter = "Excel files (*.xlsx)|*.xlsx",
-                    Title = "Выберите файл базы данных"
+                    Title = "Оберіть файл з базою даних"
                 };
 
                 if (openFileDialog.ShowDialog() != true)
@@ -82,7 +82,7 @@ namespace PharmacyApp
 
                 if (!File.Exists(filePath))
                 {
-                    MessageBox.Show("Файл не найден: " + filePath);
+                    MessageBox.Show("Файл не знайдено: " + filePath);
                     return;
                 }
 
@@ -90,7 +90,7 @@ namespace PharmacyApp
                 {
                     if (package.Workbook.Worksheets.Count == 0)
                     {
-                        MessageBox.Show("Файл не содержит листов: " + filePath);
+                        MessageBox.Show("Файл не містить листів: " + filePath);
                         return;
                     }
 
@@ -107,7 +107,7 @@ namespace PharmacyApp
                         string priceStr = worksheet.Cells[row, 4].Text.Replace(",", "."); // Замена запятой на точку для корректного парсинга
                         if (!decimal.TryParse(priceStr, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal price))
                         {
-                            MessageBox.Show($"Ошибка в строке {row}: неверный формат цены. Значение: '{worksheet.Cells[row, 4].Text}'");
+                            MessageBox.Show($"Помилка у рядку {row}: невірний формат ціни. Значення: '{worksheet.Cells[row, 4].Text}'");
                             continue; // Пропустить эту запись и перейти к следующей
                         }
 
@@ -115,7 +115,7 @@ namespace PharmacyApp
                         string quantityStr = worksheet.Cells[row, 5].Text.Replace(",", "."); // Замена запятой на точку для корректного парсинга
                         if (!decimal.TryParse(quantityStr, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal quantity))
                         {
-                            MessageBox.Show($"Ошибка в строке {row}: неверный формат количества. Значение: '{worksheet.Cells[row, 5].Text}'");
+                            MessageBox.Show($"Помилка у рядку {row}: невірний формат кількості. Значення: '{worksheet.Cells[row, 5].Text}'");
                             continue; // Пропустить эту запись и перейти к следующей
                         }
 
@@ -123,7 +123,7 @@ namespace PharmacyApp
                         string totalStr = worksheet.Cells[row, 6].Text.Replace(",", "."); // Замена запятой на точку для корректного парсинга
                         if (!decimal.TryParse(totalStr, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out decimal total))
                         {
-                            MessageBox.Show($"Ошибка в строке {row}: неверный формат общей цены. Значение: '{worksheet.Cells[row, 6].Text}'");
+                            MessageBox.Show($"Помилка у рядку {row}: невшрний формат загальної ціни. Значення: '{worksheet.Cells[row, 6].Text}'");
                             continue; // Пропустить эту запись и перейти к следующей
                         }
 
@@ -141,17 +141,17 @@ namespace PharmacyApp
 
                 if (_medicines.Count == 0)
                 {
-                    MessageBox.Show("Файл не содержит корректных данных.");
+                    MessageBox.Show("Файл не містить коректних даних.");
                     return;
                 }
 
                 RecordsDataGrid.ItemsSource = null;
                 RecordsDataGrid.ItemsSource = _medicines;
-                MessageBox.Show("База данных успешно импортирована!");
+                MessageBox.Show("База даних успішно імпортована");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка импорта базы данных: " + ex.Message);
+                MessageBox.Show("Помилка імпорту бази даних: " + ex.Message);
             }
         }
 
@@ -163,7 +163,7 @@ namespace PharmacyApp
                 SaveFileDialog saveFileDialog = new SaveFileDialog
                 {
                     Filter = "Excel files (*.xlsx)|*.xlsx",
-                    Title = "Сохранить файл как",
+                    Title = "Зберігти файл як",
                     FileName = "Liki.xlsx" // Предлагаемое имя файла
                 };
 
@@ -195,12 +195,12 @@ namespace PharmacyApp
 
                         package.SaveAs(new FileInfo(saveFileDialog.FileName));
                     }
-                    MessageBox.Show("База данных успешно экспортирована!");
+                    MessageBox.Show("База даних успішно експортована!");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка экспорта базы данных: " + ex.Message);
+                MessageBox.Show("Помилка експорту бази даних: " + ex.Message);
             }
         }
 
@@ -230,7 +230,7 @@ namespace PharmacyApp
             }
             else
             {
-                MessageBox.Show("Выберите запись для редактирования.");
+                MessageBox.Show("Оберіть поле для редагування.");
             }
         }
 
@@ -238,13 +238,13 @@ namespace PharmacyApp
         {
             if (_medicines.Count == 0)
             {
-                MessageBox.Show("База данных пуста.");
+                MessageBox.Show("База даних порожня.");
                 return;
             }
 
             if (RecordsDataGrid.SelectedItem is Medicine selectedMedicine)
             {
-                var result = MessageBox.Show($"Вы уверены, что хотите удалить {selectedMedicine.Name}?", "Подтверждение удаления", MessageBoxButton.YesNo);
+                var result = MessageBox.Show($"Ви впевнені, що хочете видалити {selectedMedicine.Name}?", "Підтвердження видалення", MessageBoxButton.YesNo);
                 if (result == MessageBoxResult.Yes)
                 {
                     _medicines.Remove(selectedMedicine);
@@ -254,7 +254,7 @@ namespace PharmacyApp
             }
             else
             {
-                MessageBox.Show("Выберите запись для удаления.");
+                MessageBox.Show("оберіть запис для видалення.");
             }
         }
 
